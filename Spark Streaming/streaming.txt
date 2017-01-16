@@ -1,0 +1,6 @@
+# Apache Storm is a standalone stream processing application
+# Spark Streaming-> uses a single machine to do batch processing and stream processing
+# In a Spark streaming app, the entire stream of logs is represented as a DStream
+# The DStream has a property called batch interval(measured in seconds)
+# All data arriving within this interval is grouped into an RDD
+# The DStream is a sequence of RDDs; 1 RDD every batch interval
