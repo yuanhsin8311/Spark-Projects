@@ -1,0 +1,21 @@
+# Recommendation System: collaborative filtering and content filtering
+# Collaborative filtering: relies on user behavior(history,ratings,similar users etc)
+# Content filtering: based on product attribites(genre,description)
+# Collaborative_Rating: 
+# (1) explicit rating: a rating users have explicitly given 
+# (2) implicit rating: based on a preference the users have somehow indicated ex. times the user listened to an music
+
+[Collaborative]
+1. technique: Latent Factor Analysis
+              identify hidden factors that influence a user's rating
+              ex. movie: commercial appeal / dramatic vs comedic nature 
+2. user-product rating matrix: Rui = Pu x Qi
+3. sort the predicted ratings in descending order to find the top recommendations for a user
+4. slove the sets of equations for the sets of ratings which exist (training sets): 
+   Alternating Least Squares: standard optimization technique
+   
+# Spark MLlib has a built-in class for applying ALS on any user-product-matrix
+# MLlib provides built-in machine learning functionality in Spark
+# It solve 2 problems with previous computing frameworks- abstraction and performance
+# (1) abstraction: Spark MLlib 
+  (2) performance: Spark RDDs are in-memory. It can make multiple passes over the same data without doing disk writes
