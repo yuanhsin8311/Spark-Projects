@@ -24,17 +24,11 @@ if __name__ == "__main__":
     # >spark-submit Streaming.py localhost 9999
     lines = ssc.socketTextStream(sys.argv[1], int(sys.argv[2]))
     
-    counts = lines.flatMap(lambda line: line.split(" "))\
-                  .filter(lambda word:"ERROR" in word)\
+    counts = lines.flatMap(lambda line: line.split(" "))\   # flatMap converts an RDD with lines into an RDD wth words
+                  .filter(lambda word:"ERROR" in word)\     # filter for words that have the substring "ERROR"
                   .map(lambda word: (word, 1))\
                   .reduceByKey(lambda a, b: a+b)
-    counts.pprint()
+    counts.pprint()     # print the count to the screen
     ssc.start()
     ssc.awaitTermination()
-    
-    
-    sc = SparkContext(appName="StreamingErrorCount")
-    ssc = StreamingContext(sc,1)
-    ssc.checkpoint("hdfs:///user/yuanhsin/streaming")
-    lines = ssc.socketTextStream(sys.argv[1], int(sys.argv[2]))
-    counts = lines.flatMap()
+ 
