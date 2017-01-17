@@ -1,0 +1,4 @@
+# GrapgX is a library for graph algorithms
+# Datasets: Linked webpages, social networks
+# Pros: abstraction, performance(RDDs and in-memory computation)
+# Only can be used by Scala; Pythpn- GraphFrames
