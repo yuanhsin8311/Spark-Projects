@@ -8,5 +8,8 @@
 
 [ Section 2 ]
 # First start a stream at localhost using the netcat utility
-# > nc -lk 9999
-# >spark-submit Steaming.py localhost 9999
+# > nc -lk 9999        ## spark will start listening for the streaming data at the 9999 port
+# >spark-submit Steaming.py localhost 9999    ## run this in another terminal
+# Each line went into a separate RDD
+# Each line got processed individually
+# The count is from a single RDD, not accumulated across RDDs
