@@ -17,5 +17,5 @@
 # Spark MLlib has a built-in class for applying ALS on any user-product-matrix
 # MLlib provides built-in machine learning functionality in Spark
 # It solve 2 problems with previous computing frameworks- abstraction and performance
-# (1) abstraction: Spark MLlib 
+# (1) abstraction: Spark MLlib has built-in modules for classification, regression, clustering, recommendations algorithms 
   (2) performance: Spark RDDs are in-memory. It can make multiple passes over the same data without doing disk writes
