@@ -9,7 +9,15 @@ verticesPath = "hdfs:///user/yuanhsin/spark/Marvel/Vertices.csv"
 from pyspark.sql import SQLContext,Row
 sqlC = SQLContext(sc)
 
-edges = sqlC.createDataFrame(sc.textFile(edgesPath)).map(lambda x: x.split(",")).
+# The read method is used when reading data from files
+# createDataFrame(RDD,schema)
+# RDD: load the data from file into an RDD, parse the rows and give it to createDataFrame()
+# schema: explicitly specify the schema when using createDataFrame()
+edges = sqlC.createDataFrame(sc.textFile(edgesPath))\
+        .map(lambda x: x.split(","))\
+        .map(lambda x: int(y) for y in x)\
+        ,["src","dst","wt"])    # edge weight: the count of the number of times the 2 characters appear together
+        
 edges=sqlC.createDataFrame\
     (sc.textFile(edgesPath)\
     .map(lambda x:x.split(","))\
