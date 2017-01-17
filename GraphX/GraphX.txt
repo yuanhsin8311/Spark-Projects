@@ -1,4 +1,14 @@
-# GrapgX is a library for graph algorithms
+# GraphX is a library for graph algorithms
 # Datasets: Linked webpages, social networks
 # Pros: abstraction, performance(RDDs and in-memory computation)
 # Only can be used by Scala; Pythpn- GraphFrames
+
+# (1)Vertices: characters
+#    - Size of vertice is proportional to the number of times the character appears in any comic book
+#    - The dataframe must have a id field, other fields must be left to the id field
+# (2)Edges: a relationship between two characters
+#    - Edge weight is proportional to the number of times the characters appear together
+#    - co-occurence network
+#    - must have a src and dst field 
+
+# A DataFrame is like a in-memory table: Vertices DataFrame, Edges DataFrame 
