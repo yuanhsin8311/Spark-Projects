@@ -31,19 +31,23 @@ uaData.persist()    # ALS will pass over this RDD many times
 
 uaData.take(10)
 
-# ALS has two methods: (1)trainImplicit(data,number of hidden factors it should look for) (2)train
+# ALS has two methods: (1)trainImplicit(data,number of hidden factors it should look for,max number of iterations,
+#                                       lambda:a parameter used to control the quality of the ALS results)
+#                      (2)train
+# hyper-parameter tuning techniques to find right values
 model = ALS.trainImplicit(uaData,10,5,0.01)
+recommendations = model.recommendProducts(user,5)  #(userid,n) given this method a user id and the number of recommendations i want
 
-user = 1000002
-recommendations=model.recommendProducts(user,5)
-recommendations
-artistsPath="hdfs:///user/swethakolalapudi/audio/artist_data.txt"
-artistLookup=sc.textFile(artistsPath).map(lambda x:x.split("\t"))
+user = 1000002      # recommendation is an RDD of Rating Objects
+
+artistPath = "hdfs:///user/yuanhsin/spark/audio/artist_data.txt"
+artistLookup = sc.textFile(artistPath).map(lambda x: x.split("\t"))
 artistLookup.persist()
-userArtists=rawUserArtistData\
-    .map(lambda x:x.split(" "))\
-    .filter(lambda x:int(x[0])==user and int(x[2])>50)\
-    .map(lambda x:x[1]).collect()
+
+# Find out which artists this user already likes
+# rawUserArtistData: the raw user artist data / split the row into a list / filter rows corresponding to this user 
+# The user should have listened to these artists at least 50 times
+userArtists = rawUserArtistData.map(lambda x: x.split(" ")).filter(lambda x: int(x[0]) == user and int(x[2]) >50).map(lambda x: x[1]).collect()
 for artist in userArtists: 
     print artistLookup.lookup(artist)
     
