@@ -1,0 +1,45 @@
+# Spark is a general purpose engine for data processing and analysis.
+# Spark is built on Scala and provides APIs in Java.Python.Scala.
+# It also provides interactive REPL (Read Evaluation Loop) environments for Python and Scala.
+# Spark is a part of Hadoop ecosystem and it's engine is capable of distributed computing.
+
+# Limitation of Hadoop's MapReduce engine:
+# (1) Everything has to be expressed as a chain of map and reduce tasks
+# (2) no interactive environment
+# (3) disk writes occur at the end of each intermediate map-reduce task
+# (4) can only do batch processing ex. file stored on disk
+
+# Spark's solution:
+# (1) operation in a intuitive way
+# (2) interactive shell are available for scala and python
+# (3) data is kept in-memory and can be passed directly to the next step
+# (4) can do stream processing ex. a stream of status messages from a website
+
+# RDD(Resilient Distributed Dataset): main programming abstraction in Spark
+# - in-memory objects and all data is processed using them 
+# - Resilient: in-memory but resilient; fault-tolerant
+# - Distributed: distributed data accross different clusters (not necessary to deal with lots of complexities)
+
+# Spark components:
+# (1) Spark core: basic functionality of spark; it provides an API for working with RDDs
+                  only a computing engine
+# (2) Storage system: stores the data to be processed
+                      -could be a local file system ex. HBase,Cassandra,HDFS,HIVE
+# (3) Cluster manager: help spark to run tasks across a cluster of machines
+                       -schedule tasks and manages resources across the cluster (YARN)
+                       -Apache Mesos is the original cluster manager when spark was developed
+     Hadoop/ (1) HDFS: for storage (2)YARN: manage cluster (3)MapReduce: for computinggit
+
+>pyspark --master local[2]    
+# By using master option, it can launch spark in distributed mode and plug in different cluster managers
+# local[2]: this tells spark to launch shell with multiple threads on the local machine
+# [2]: number of threads (ideal is number of cores on the machine)
+
+>pyspark --master yarn-client
+# If you have a Hadoop cluster running, you can plug in yarn as cluster manager 
+
+# when the shell is launched, it initialized a SparkContext (sc)
+# The SparkContext represents a connection to the Spark cluster
+# This can be used to load data into memory from a specified source
+# The SparkContext object is required to create resilient distributed datasets
+# All data analyses will be through operations on RDDs 
