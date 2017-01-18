@@ -1,1 +1,16 @@
+# MapR Tutorial
 
+# Download the GraphFrames python package
+wget https://github.com/graphframes/graphframes/archive/master.tar.gz
+tar xvfz master.tar.gz
+ln -s graphframes-master/python/graphframes ./graphframes
+
+# Grab the Stanford Facebook data set files and move them into MapR-FS:
+wget https://snap.stanford.edu/data/facebook.tar.gz
+wget https://snap.stanford.edu/data/facebook_combined.txt.gz
+wget https://snap.stanford.edu/data/readme-Ego.txt
+tar xvfz facebook.tar.gz -C /mapr/demo.mapr.com/user/mapr --strip 1
+gunzip -c facebook_combined.txt.gz > /mapr/demo.mapr.com/user/mapr
+
+# Download these code examples:
+wget https://raw.githubusercontent.com/mapr-demos/spark-graphframes/master/gframes.py
