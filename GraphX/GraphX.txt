@@ -12,3 +12,5 @@
 #    - must have a src and dst field 
 
 # A DataFrame is like a in-memory table: Vertices DataFrame, Edges DataFrame 
+
+# Graph algorithm: triangle search, connected component, PageRank, Breadth first search
