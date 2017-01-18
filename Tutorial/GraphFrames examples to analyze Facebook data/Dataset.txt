@@ -1,4 +1,4 @@
-# MapR Tutorial
+# MapR Tutorial : https://www.mapr.com/blog/using-spark-graphframes-analyze-facebook-connections
 
 # Download the GraphFrames python package
 wget https://github.com/graphframes/graphframes/archive/master.tar.gz
