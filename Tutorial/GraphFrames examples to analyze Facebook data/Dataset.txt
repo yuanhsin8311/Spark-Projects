@@ -14,3 +14,12 @@ gunzip -c facebook_combined.txt.gz > /mapr/demo.mapr.com/user/mapr
 
 # Download these code examples:
 wget https://raw.githubusercontent.com/mapr-demos/spark-graphframes/master/gframes.py
+
+# Running the Code with spark-submit
+
+# All of the code is in the file gframes.py. 
+# After completing the above steps you can run the example as follows (you may need to adjust parts of this according to the Spark and/or graphframes versions):
+
+/opt/mapr/spark/spark-1.5.2/bin/spark-submit --packages graphframes:graphframes:0.1.0-spark1.5,com.databricks:spark-csv_2.11:1.4.0 --master yarn --deploy-mode client gframes.py
+
+# The code will create several RDDs from the input files, build a unified DataFrame and GraphFrame of the 'friends' network, and output the results of motif queries, searches and PageRank.
