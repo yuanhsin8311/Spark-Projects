@@ -38,15 +38,52 @@ airlinesWoHeader.take(10)
 # Data is processed only when the users request a result(take actions) 
 # lazy evaluation ->fast computation
 # spark will keep a record of the series of transformations requested by the user -> efficiently group the transformation and execute 
-
 airlinesParsed=airlinesWoHeader.map(lambda x:x.split(",")).take(10)
 print airlinesParsed
+# map(function)
+airlines.map(len).take(10)    
 
-airlines.map(len).take(10)
 def notHeader(row):
     return "Description" not in row
 airlines.filter(notHeader).take(10)
+
 # Chain transformations together 
-airlines.filter(notHeader) \
-    .map(lambda x: x.split(',')) \
-    .take(10)
+airlines.filter(notHeader).map(lambda x: x.split(',')).take(10)
+
+# Use Python libraries 
+import csv 
+from StringIO import StringIO
+
+def split(line):
+    reader = csv.reader(StringIO(line))
+    return reader.next()
+
+airlines.filter(notHeader).map(split).take(10)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
